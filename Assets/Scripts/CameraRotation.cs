@@ -9,6 +9,11 @@ public class CameraRotation : MonoBehaviour {
 
     private float _newRotX;
 
+    void Start() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void Update() {
         this.transform.localEulerAngles = new Vector3(
             this.transform.localEulerAngles.x,

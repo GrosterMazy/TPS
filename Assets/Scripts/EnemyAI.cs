@@ -7,9 +7,11 @@ public class EnemyAI : MonoBehaviour {
     public List<Transform> targets;
     public Transform player; 
     public float viewAngle;
+    public float damage;
 
     private NavMeshAgent _navMeshAgent;
     public bool _eyeContactWithPlayer;
+    private PlayerHP _playerHP;
 
     void PickNewTarget() {
         this._navMeshAgent.destination = this.targets[Random.Range(0, this.targets.Count)].position;
@@ -17,6 +19,7 @@ public class EnemyAI : MonoBehaviour {
 
     void Start() {
         this._navMeshAgent = this.GetComponent<NavMeshAgent>();
+        this._playerHP = this.player.GetComponent<PlayerHP>();
         this.PickNewTarget();
     }
 
@@ -29,9 +32,12 @@ public class EnemyAI : MonoBehaviour {
                 && hit.collider.gameObject == player.gameObject)
             this._eyeContactWithPlayer = true;
 
-        if (this._eyeContactWithPlayer)
+        if (this._eyeContactWithPlayer) {
             this._navMeshAgent.destination = this.player.position;
-        else if (this._navMeshAgent.remainingDistance == 0)
+            if (this._navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                this._playerHP.DealDamage(this.damage * Time.deltaTime);
+        }
+        else if (this._navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             this.PickNewTarget();
     }
 }
