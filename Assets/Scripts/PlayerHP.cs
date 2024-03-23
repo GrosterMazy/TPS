@@ -30,6 +30,17 @@ public class PlayerHP : MonoBehaviour {
             this.cameraZoom.enabled = false;
         }
 
+        this.DrawHPBar();
+    }
+    public void Heal(float heal) {
+        this.value += heal;
+        if (this.value > this._maxValue)
+            this.value = this._maxValue;
+
+        this.DrawHPBar();
+    }
+
+    void DrawHPBar() {
         this.valueRectTransform.anchorMax = new Vector2(this.value/this._maxValue, 1);
     }
 }

@@ -878,8 +878,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 1579847334266026732, guid: 460db9b4fe17ea14c9cad99d7ee72490,
     type: 3}
+  grenadePrefab: {fileID: 5583978836531283303, guid: 5e287f359423fc5478a3ed90107f5603,
+    type: 3}
   hand: {fileID: 2301932870036589258}
   aim: {fileID: 1118281722496046884}
+  grenadeThrowForce: 500
 --- !u!114 &7903523557899122494
 MonoBehaviour:
   m_ObjectHideFlags: 0
